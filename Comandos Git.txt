@@ -1,0 +1,69 @@
+git --version
+git config --global user-name "nombre que quiera poner"
+git config --global user.email "micorreo@gmail.com"
+git config --global -l (menos ele, nos va a mostrar el usuario y correo)
+git init (va a crear un repositorio en la carpeta actual)
+git status (te dirá el estatus actual de los archivos en la carpeta actual, para saber cuales estan siendo seguidos por le repositorio y cuales no )
+git add . (agrega a git todos los archivos de la carpeta actual)
+git add index.html (agrega a git el archivo index.html)
+git add js/ (agrega todos los archivos en la carpeta js)
+git add js/*.css (Agrega todos los archivos css en la carpeta js)
+
+git reset index.html (quita del stage al index.html)
+git commit -m "Commit inicial" (confirma los archivos agregados anteriormente para ahora si subirlos ya que estaban en "Stage")
+
+git diff (Si alguien modifico un archivo, uso git status para ver que archivo fué modificado, con este comando veo exactamente que modificó)
+git checkout . (Regresa los archivos al ultimo commit (Antes de la ultima modiicacion)
+git log (Muestra todos los commit con sus titulos y quien los realizó)
+NOTA: Si hay muchos coomit, puedo dejar de verlos presionando la letra Q
+
+git help (documentacion de todos los comandos)
+
+//Poner alias a comandos
+git config --global alias.s "status" (con esto, podemos ejecutar status con solo poner git s)
+git commit --amend -m "Modificar el mensaje al ultimo commit"
+git mv ndex.html index.html (cambia el archivo de nombre)
+git rm ndex.html (borra ndex.html)
+git reset --soft idDelUltimoCommit (da un paso atras a ese commit sin moficiar nada)
+git reset --hard idDelComitQueQuieraVolver (asi recupera los archivos del commit que selecciono)
+git reflog (Te muestra los cambios hasta los que ya se habian borrado)
+git reset --mixed idDelComit (Viaja al commit eliminando log sin descargar cambios)
+
+
+NOTA: si creo un archivo .gitignore, dentro pongo la ruta de cada archivo que no quiero que reconoza git, por ejemplo index o in* e ignorara todo lo que comience con in o /config/ e ignorara toda la carpeta config
+
+//RAMAS
+git branch nombreDeRama
+git log --oneline --decorate --all --graph (muestra TODO hasta las nuevas ramas)
+git checkout ramaASeleccionar
+NOTA: Al trabajar con ramas si en rama master tengo archivo 1,2 y 3 y en una rama tengo 4 y 5, si cambio a la rama master, solo tendre del 1 al 3 y si cambio a la otra rama tendre 4 y 5
+para unir una rama a la rama master seleccionar la rama que quiera y para añadirle lo de una rama usar git merge nombreRamaAAñadir
+Despues de integrar una rama al master, se elimina usando git branch -d RamaAEliminar
+
+//Conflictos
+SI modifico una rama, luego el master y quiero añadir la rama al master, me dará conflicto, para solucionarlo entro a los archivos en conflicto y borro el codigo generado automaticamente, despues dejo los valores en la estructura que yo quiera y vuelvo a añadir el archivo a stage para realizare el commit
+ 	
+//Tags
+git tag nombre_de_etiqueta(para el ultimo commit)
+git tag -d nombre_de_etiqueta (borra la etiqueta)
+git tag -a v1.0.0 -m "Version inicial" (añade la versión, el primer numero son cambios muy grandes, el segundo 0 es un cambio moderado y el 3er cero es un cambio minimo)
+git show v1.0.0 (con eso muestra todo el detalle de este commit)
+(Como añadir tag a un commit anterior)
+git tag -a v0.0.1 identificadorDeCommit -m "version beta"
+
+//Usar github
+git remote add origin urlDeMiRepositorio (vincular el url a mi git )
+git push -u origin master (meter los archivos en la cuenta master, debo de poner el url y contraseña)
+(para clonar repositorio, ponerse en la carpeta que quiero que este)
+git clone urlDeRepositorio
+(una vez que clono un repositorio, puedo usar solo git push origin master para subir los cambios a github)
+
+//Usar github2
+Pull trae cambios
+Push sube cambios
+git pull (carga los archivos de github seleccionado con anterioridad a tu base local)
+
+//Usar Fork, se usa cuando queremos usar un repositorio y hacer mis propios cambios de ese repositorio
+Para trabajar en equipo, el master es el desarrollador principal y los que van a trabajar contigo, tienen que hacer un fork al repositorio principal
+Los colaboradores tienen que subir sus cambios a sus repositorios y ahi realizar "pull request" y con eso mandaran sugerencias de cambios al master (desarrollador principal)
+
